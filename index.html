@@ -56,9 +56,18 @@
         .then(response => response.json())
         .then(data => {
             console.log(data.results[0]);
+            
             let storyText = document.createElement("p");
             storyText.innerText = data.results[0].title + " — " + data.results[0].abstract;
             document.getElementById('div1').append(storyText);
+
+            let link = document.createElement("a");
+            let linkText = document.createTextNode("Visit this article's webpage!");
+            link.appendChild(linkText);
+            link.title = "Visit this article's webpage!";
+            link.href = data.results[0].url;
+            document.getElementById('div1').appendChild(link);
+            
         })
         
     })
