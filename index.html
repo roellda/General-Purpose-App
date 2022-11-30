@@ -55,7 +55,10 @@
         fetch(fetchString)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data.results[0]);
+            let storyText = document.createElement("p");
+            storyText.innerText = data.results[0].title + " — " + data.results[0].abstract;
+            document.getElementById('div1').append(storyText);
         })
         
     })
