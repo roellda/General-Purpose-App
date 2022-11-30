@@ -34,7 +34,7 @@
     
     <div id="div1" class="screen">
     <h2>There's many top stories to read, please choose any of the following:</h2>
-    <h2>arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, t-magazine, travel, upshot, us, and world.</h2>
+    <h3>arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, t-magazine, travel, upshot, us, and world.</h3>
 
     <label class="mdc-text-field mdc-text-field--filled">
     <span class="mdc-text-field__ripple"></span>
@@ -46,6 +46,10 @@
     </button>
 
     <script>
+    let storyText = document.createElement("p");
+    let image = document.createElement("img");
+    let link = document.createElement("a");
+    let linkText = document.createTextNode("Visit this article's webpage!");
     document.querySelector(".findStory").addEventListener("click", event => {
         console.log(document.querySelector(".mdc-text-field__input").value);
         let currText = document.querySelector(".mdc-text-field__input").value;
@@ -59,18 +63,14 @@
             console.log(data.results[0].multimedia[2].url);
 
             // append paragraph element to show title and abstract
-            let storyText = document.createElement("p");
             storyText.innerText = data.results[0].title + " — " + data.results[0].abstract;
             document.getElementById('div1').append(storyText);
 
             // append image to div
-            let image = document.createElement("img");
             image.src = data.results[0].multimedia[2].url;
             document.getElementById('div1').append(image);
 
             // display link to article's full story
-            let link = document.createElement("a");
-            let linkText = document.createTextNode("Visit this article's webpage!");
             link.appendChild(linkText);
             link.title = "Visit this article's webpage!";
             link.href = data.results[0].url;
