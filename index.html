@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>General Purpose App</title>
+    <style>
+    div.screen {border: 5px black solid; height:80vh; display:none;}
+    
+    #div1 {background-color: LightSalmon;}
+    
+    #div2 {background-color: LightGreen;}
+    
+    #div3 {background-color: purple}
+    
+    #div4 {background-color: blueviolet}
+    
+    </style>
+
+</head>
+<body>
+    <header><a href="" data-screen="div1">Story of the Day!</a>
+    <a href="" data-screen="div2">Div 2</a>
+    <a href="" data-screen="div3">Div 3</a>
+    <a href="" data-screen="div4">Div 4</a></header>
+    
+    <div id="div1" class="screen">
+    <h2>There's many top stories to read, please choose any of the following:</h2>
+    <h2>arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, t-magazine, travel, upshot, us, and world.</h2>
+
+    <label class="mdc-text-field mdc-text-field--filled">
+    <span class="mdc-text-field__ripple"></span>
+    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+    <span class="mdc-line-ripple"></span>
+    </label>
+    <button class="mdc-button mdc-button--raised">
+    <span class="findStory">Find story!</span>
+    </button>
+
+    <script>
+    document.querySelector(".findStory").addEventListener("click", event => {
+        console.log(document.querySelector(".mdc-text-field__input").value);
+        let currText = document.querySelector(".mdc-text-field__input").value;
+    })
+    </script>
+
+        
+        
+    </div>
+    
+    
+    <div id="div2" class="screen">
+    Div 2
+    </div>
+    
+    <div id="div3" class="screen">
+      Div3
+    </div>
+    
+    <div id="div4" class="screen">
+      Div4
+    </div>
+
+    <script>
+    
+    // document.querySelector("#div1").style.display = "block";
+      
+    // loop all the anchor elements
+    document.querySelectorAll("a").forEach( item => {
+    
+        item.addEventListener("click", (event) => {
+        
+        event.preventDefault();
+          
+        let screen = event.target.getAttribute("data-screen");
+        console.log(screen);
+        
+        // hide all screens
+        document.querySelectorAll("div.screen").forEach( screen => screen.style.display = "none")
+        
+        document.querySelector("#" + screen).style.display = "block";
+        
+        })
+    
+    
+    })
+    
+    </script>
+
+</body>
+
+</html>
