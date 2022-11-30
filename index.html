@@ -49,6 +49,15 @@
     document.querySelector(".findStory").addEventListener("click", event => {
         console.log(document.querySelector(".mdc-text-field__input").value);
         let currText = document.querySelector(".mdc-text-field__input").value;
+
+        //https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=yourkey
+        let fetchString = "https://api.nytimes.com/svc/topstories/v2/" + currText + ".json?api-key=yW7ydKOqHyfWA2WdN7hOfzjFySbCJbeQ";
+        fetch(fetchString)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        
     })
     </script>
 
