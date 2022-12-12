@@ -28,8 +28,8 @@
 </head>
 <body>
     <header><a href="" data-screen="div1">Story of the Day!</a>
-    <a href="" data-screen="div2">Div 2</a>
-    <a href="" data-screen="div3">Div 3</a>
+    <a href="" data-screen="div2">Take a picture of yourself!</a>
+    <a href="" data-screen="div3">Data of Towed Cars</a>
     <a href="" data-screen="div4">Div 4</a></header>
     
     <div id="div1" class="screen">
@@ -225,20 +225,64 @@
         })();
     
     </script>
-
-
-
-
-
-            
         </div>
 
-
-        
     </div>
     
     <div id="div3" class="screen">
-      Div3
+      
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    let redCount = 0;
+    let blueCount = 0;
+    let greenCount = 0;
+    let silverCount = 0;
+    let blackCount = 0;
+    function drawChart() {
+        fetch("https://data.cityofchicago.org/resource/ygr5-vcbg.json")
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(record => {
+                // console.log(record);
+                if (record.color == "BLU") {
+                    blueCount++;
+                }
+                if (record.color == "GRN") {
+                    greenCount++;
+                }
+                if (record.color == "RED") {
+                    redCount++;
+                }
+                if (record.color == "SIL") {
+                    silverCount++;
+                }
+                if (record.color == "BLK") {
+                    blackCount++;
+                }
+                var data = google.visualization.arrayToDataTable([
+            ['Task', 'Color of Cars Towed'],
+            ['RED', redCount],
+            ['BLUE', blueCount],
+            ['GREEN', greenCount],
+            ['SILVER', silverCount],
+            ['BLACK', blackCount]
+        ]);
+        var options = {
+            title: 'Color of Cars Towed in Last 90 Days',
+            pieHole: 0.4,
+        };
+        
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+            })
+        })
+    }
+    </script>
+
+    <div id="donutchart" style="width: 900px; height: 900px;"></div>
+        
     </div>
     
     <div id="div4" class="screen">
